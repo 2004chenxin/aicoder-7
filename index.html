@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电影平台</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div id="app">
+    <h1>电影列表</h1>
+    <ul v-for="movie in movies" :key="movie.id">
+      <li>{{ movie.title }} - {{ movie.year }}</li>
+    </ul>
+  </div>
+  </div>
+  <script>
+const App = {
+  data() {
+    return {
+      movies: []
+    }
+  },
+  created() {
+    this.$axios.get('/api/movies')
+      .then(response => {
+        this.movies = response.data;
+      });
+  }
+}
+    Vue.createApp(App).mount('#app');
+  </script>
+  <script src="./main.js"></script>
+</body>
+</html>
